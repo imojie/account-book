@@ -14,6 +14,7 @@ import {HashRouter, Switch, Route} from 'react-router-dom';
 import AccountBookApp from './components/AccountBookApp';
 import AccountItems from './components/AccountItems';
 import EditAccountItem from './components/EditAccountItem';
+import AccountList from './components/AccountList';
 import Login from './components/Login';
 // import Me from '../src/components/Me';
 // import UpdatePassword from '../src/components/UpdatePassword';
@@ -47,7 +48,7 @@ ReactDOM.render(
                 {/*<Route path="/edit-account/:id?" component={EditAccount}/>*/}
                 {/*<Route path="/expenditure-categories" component={ExpenditureCategories}/>*/}
                 {/*<Route path="/income-categories" component={IncomeCategories}/>*/}
-                {/*<Route path="/accounts" component={AccountList}/>*/}
+                <Route path="/accounts" component={AccountList}/>
                 <Route path="/passport/login" component={Login}/>
                 {/*<Route path="/me" component={Me}/>*/}
                 {/*<Route path="/update-password" component={UpdatePassword}/>*/}
