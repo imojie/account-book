@@ -13,6 +13,7 @@ import {HashRouter, Switch, Route} from 'react-router-dom';
 // } from '../src/redux/ToBeSubmittedAccountItem';
 import AccountBookApp from './components/AccountBookApp';
 import AccountItems from './components/AccountItems';
+import EditAccountItem from './components/EditAccountItem';
 import Login from './components/Login';
 // import Me from '../src/components/Me';
 // import UpdatePassword from '../src/components/UpdatePassword';
@@ -42,7 +43,7 @@ ReactDOM.render(
             <Switch>
                 <Route exact path="/" component={AccountBookApp}/>
                 <Route path="/account-items" component={AccountItems}/>
-                {/*<Route path="/edit-account-item/:id?" component={EditAccountItem}/>*/}
+                <Route path="/edit-account-item/:id?" component={EditAccountItem}/>
                 {/*<Route path="/edit-account/:id?" component={EditAccount}/>*/}
                 {/*<Route path="/expenditure-categories" component={ExpenditureCategories}/>*/}
                 {/*<Route path="/income-categories" component={IncomeCategories}/>*/}

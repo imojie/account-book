@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-// import {initItem} from "../actions/item";
+import {initItem} from "../actions/item";
 import {connect} from "react-redux";
 
 class AccountBookApp extends Component {
@@ -11,8 +11,8 @@ class AccountBookApp extends Component {
                 <div>
                     <button onClick={() => {
                         // 初始化 accountItem
-                        // this.props.initItem();
-                        // this.props.history.push('/edit-account-item');
+                        this.props.initItem();
+                        this.props.history.push('/edit-account-item');
                     }}>记一笔
                     </button>
                 </div>
@@ -27,14 +27,13 @@ class AccountBookApp extends Component {
     }
 }
 
-//
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         initItem: () => {
-//             dispatch(initItem());
-//         }
-//     };
-// };
 
-// export default connect(null, mapDispatchToProps)(AccountBookApp);
-export default AccountBookApp;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        initItem: () => {
+            dispatch(initItem());
+        }
+    };
+};
+
+export default connect(null, mapDispatchToProps)(AccountBookApp);

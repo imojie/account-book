@@ -1,0 +1,54 @@
+.expenditure-categories {
+    position: relative;
+}
+
+.parent-categories {
+    position: fixed;
+    width: 349px;
+    top: 90px;
+    bottom: 0;
+    left: 0;
+    overflow-y: scroll;
+    border-right: 1px solid #000;
+}
+
+.children-categories {
+    position: fixed;
+    top: 90px;
+    bottom: 0;
+    left: 350px;
+    right: 0;
+    overflow-y: scroll;
+}
+
+.transfer_categories > div > div, .loan_categoires > div > div {
+    margin-left: 0.18rem;
+    margin-bottom: 0.18rem;
+}
+
+.edit-account-item {
+    position: relative;
+}
+
+.edit-account-item .save-btn {
+    position: fixed;
+    left: 16px;
+    bottom: 0px;
+    right: 16px;
+}
+
+.save_account_btn {
+    position: fixed;
+    left: 16px;
+    bottom: 80px;
+    right: 16px;
+}
+
+.user_head {
+    text-align: center;
+}
+
+.user_head img {
+    width: 300px;
+    height: 300px;
+}
