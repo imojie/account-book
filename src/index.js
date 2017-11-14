@@ -11,14 +11,17 @@ import {HashRouter, Switch, Route} from 'react-router-dom';
 //     UserReducer,
 //     ExpenditureCategoriesReducer
 // } from '../src/redux/ToBeSubmittedAccountItem';
+
 import AccountBookApp from './components/AccountBookApp';
 import AccountItems from './components/AccountItems';
 import EditAccountItem from './components/EditAccountItem';
+import ExpenditureCategories from './components/ExpenditureCategories';
 import AccountList from './components/AccountList';
 import Login from './components/Login';
-// import Me from '../src/components/Me';
-// import UpdatePassword from '../src/components/UpdatePassword';
+import Me from '../src/components/Me';
+import UpdatePassword from '../src/components/UpdatePassword';
 import NoMatch from './components/NoMatch';
+
 import userReducer from './reducers/user';
 import itemReducer from './reducers/item';
 import accountsReducer from "./reducers/accounts";
@@ -46,12 +49,12 @@ ReactDOM.render(
                 <Route path="/account-items" component={AccountItems}/>
                 <Route path="/edit-account-item/:id?" component={EditAccountItem}/>
                 {/*<Route path="/edit-account/:id?" component={EditAccount}/>*/}
-                {/*<Route path="/expenditure-categories" component={ExpenditureCategories}/>*/}
+                <Route path="/expenditure-categories" component={ExpenditureCategories}/>
                 {/*<Route path="/income-categories" component={IncomeCategories}/>*/}
                 <Route path="/accounts" component={AccountList}/>
                 <Route path="/passport/login" component={Login}/>
-                {/*<Route path="/me" component={Me}/>*/}
-                {/*<Route path="/update-password" component={UpdatePassword}/>*/}
+                <Route path="/me" component={Me}/>
+                <Route path="/update-password" component={UpdatePassword}/>
                 <Route component={NoMatch}/>
             </Switch>
         </HashRouter>
