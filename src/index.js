@@ -12,16 +12,12 @@ import {HashRouter, Switch, Route} from 'react-router-dom';
 //     ExpenditureCategoriesReducer
 // } from '../src/redux/ToBeSubmittedAccountItem';
 import AccountBookApp from './components/AccountBookApp';
-// import EditAccountItem from '../src/components/EditAccountItem';
-// import EditAccount from '../src/components/EditAccount';
-// import AccountList from '../src/components/AccountList';
-// import AccountItems from '../src/components/AccountItems';
-// import ExpenditureCategories from '../src/components/ExpenditureCategories';
-// import IncomeCategories from '../src/components/IncomeCategories';
+import AccountItems from './components/AccountItems';
 import Login from './components/Login';
 // import Me from '../src/components/Me';
 // import UpdatePassword from '../src/components/UpdatePassword';
 import NoMatch from './components/NoMatch';
+import userReducer from './reducers/user';
 import itemReducer from './reducers/item';
 import accountsReducer from "./reducers/accounts";
 import expenditureCategoriesReducer from "./reducers/expenditure_categories";
@@ -30,12 +26,7 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 
 
 let reducers = combineReducers({
-    // AccountItemReducer,
-    // ItemAmountReducer,
-    // ItemAccountReducer,
-    // ItemCategoryReducer,
-    // UserReducer,
-    // ExpenditureCategoriesReducer,
+    "user": userReducer,
     "accountItem": itemReducer,
     "entities": combineReducers({
         "accounts": accountsReducer,
@@ -50,7 +41,7 @@ ReactDOM.render(
         <HashRouter>
             <Switch>
                 <Route exact path="/" component={AccountBookApp}/>
-                {/*<Route path="/account-items" component={AccountItems}/>*/}
+                <Route path="/account-items" component={AccountItems}/>
                 {/*<Route path="/edit-account-item/:id?" component={EditAccountItem}/>*/}
                 {/*<Route path="/edit-account/:id?" component={EditAccount}/>*/}
                 {/*<Route path="/expenditure-categories" component={ExpenditureCategories}/>*/}

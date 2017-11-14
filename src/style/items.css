@@ -1,0 +1,65 @@
+.row {
+    padding: 0 0.3rem;
+    background-color: white;
+}
+
+.row-title {
+    height: 1rem;
+    line-height: 1rem;
+    color: #888;
+    font-size: 0.36rem;
+    border-bottom: 1px solid #F6F6F6;
+}
+
+.row-text {
+    display: inline-block;
+    font-size: 0.32rem;
+    line-height: 1;
+}
+
+.account-item {
+    display: flex;
+    align-items: center;
+    padding: 25px 30px;
+    border-bottom: 1px solid #ddd;
+}
+
+.account-item .day {
+    width: 100px;
+}
+
+.account-item .info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.account-item .info .first-row {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.account-item .info .second-row {
+    display: flex;
+}
+
+.account-item .category {
+    font-size: 1.2em;
+}
+
+.account-item .amount {
+    flex: 1;
+    text-align: right;
+    font-weight: 900;
+    font-size: 1.2em;
+}
+
+.account-item .occurred_at {
+    color: #888;
+}
+
+.account-item .account {
+    flex: 1;
+    text-align: right;
+    color: #888;
+}

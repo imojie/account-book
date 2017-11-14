@@ -1,6 +1,6 @@
 import {SET_USER} from '../constants/actionTypes';
 
-export const UserReducer = (state, action) => {
+export default function UserReducer(state, action) {
     let localUser = localStorage.getItem('user');
     localUser = localUser ? JSON.parse(localUser) : {};
 
@@ -13,4 +13,4 @@ export const UserReducer = (state, action) => {
         default:
             return state;
     }
-};
+}

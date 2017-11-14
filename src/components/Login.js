@@ -29,9 +29,8 @@ class Login extends Component {
             if (0 === content.code) {
                 let user = content.data.user;
                 user.token = content.data.token;
-                alert(user.name);
                 self.props.setUser(user);
-                self.props.history.push('/expenditure');
+                self.props.history.push('/');
             } else {
                 alert(content.message);
             }
