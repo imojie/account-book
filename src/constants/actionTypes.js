@@ -1,0 +1,13 @@
+export const SET_USER = 'set_user';
+export const SET_ACCOUNTS = 'set_accounts';
+
+export const SET_EXPENDITURE_CATEGORIES = 'set_expenditure_categories';
+
+export const SET_ITEM = 'set_item';
+export const SET_ITEM_TYPE = 'set_item_type';
+export const SET_ITEM_AMOUNT = 'set_item_amount';
+export const SET_ITEM_REMARK = 'set_item_remark';
+export const SET_ITEM_OCCURRED_AT = 'set_item_occurred_at';
+export const SET_ITEM_ACCOUNT = 'set_item_account';
+export const SET_ITEM_EXPENDITURE_CATEGORY = 'set_item_expenditure_category';
+export const SET_ITEM_TRANSFER_CATEGORY = 'set_item_transfer_category';
