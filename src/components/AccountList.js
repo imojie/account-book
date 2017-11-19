@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {List, NavBar} from 'antd-mobile';
+import {List, NavBar, Icon} from 'antd-mobile';
 import Account from './Account';
 import axios from "axios/index";
 import {connect} from 'react-redux';
@@ -67,6 +67,7 @@ class AccountList extends Component {
             <div>
                 <NavBar
                     mode="dark"
+                    icon={<Icon type="left"/>}
                     onLeftClick={() => this.props.history.goBack()}
                 >选择账户</NavBar>
                 {Object.keys(this.props.accounts).length > 0 ? (<List>{accounts}</List>) : (<div>暂无账号</div>)}

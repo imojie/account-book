@@ -129,9 +129,7 @@ class AccountItems extends Component {
 
         return (
             <div>
-                <NavBar
-                    mode="dark"
-                    onLeftClick={() => this.props.history.goBack()}>明细</NavBar>
+                <NavBar mode="dark">明细</NavBar>
 
                 <ListView
                     dataSource={this.state.dataSource}

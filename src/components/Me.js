@@ -18,7 +18,7 @@ class Me extends Component {
                 <WhiteSpace/>
 
                 <div className="user_head">
-                    <div><img src="../../head.jpeg"/></div>
+                    <div><img src={require('../img/head.jpeg')}/></div>
                     <div><span>Mr_Jing</span></div>
                 </div>
 
