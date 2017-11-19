@@ -5,11 +5,7 @@ import {
     DatePicker,
     TextareaItem,
 } from 'antd-mobile';
-
-import moment from 'moment';
-import 'moment/locale/zh-cn';
 import {connect} from "react-redux";
-import {setItemAmount, setItemOccurredAt} from "../actions/item";
 import {getAccountNameById} from "../services/account";
 
 class EditExpenditure extends Component {
@@ -32,7 +28,6 @@ class EditExpenditure extends Component {
 
     render() {
         let {amount, remark, occurred_at} = this.props.accountItem;
-        console.log('-----------occurred_at.ffffff', occurred_at);
 
         return (
             <div>
@@ -41,9 +36,13 @@ class EditExpenditure extends Component {
                         <InputItem
                             type="money"
                             value={amount}
-                            autoFocus={0 == amount}
                             placeholder="请输入金额"
                             onChange={(val) => this.props.setItemAmount(val)}
+                            ref={(el) => {
+                                if (el && !amount) {
+                                    el.focus();
+                                }
+                            }}
                             clear
                         >支出金额</InputItem>
 
@@ -61,7 +60,7 @@ class EditExpenditure extends Component {
 
                         <DatePicker
                             mode="datetime"
-                            extra={occurred_at.format('YYYY-MM-DD HH:mm')}
+                            value={occurred_at}
                             onChange={(date) => this.props.setItemOccurredAt(date)}
                         >
                             <List.Item arrow="horizontal">支出时间</List.Item>
@@ -90,11 +89,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        setItemAmount: (amount) => {
-            dispatch(setItemAmount(amount));
-        }
-    }
+    return {}
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditExpenditure);

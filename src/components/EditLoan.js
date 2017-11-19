@@ -8,9 +8,6 @@ import {
     TextareaItem,
 } from 'antd-mobile';
 
-import moment from 'moment';
-import 'moment/locale/zh-cn';
-
 
 class EditLoan extends Component {
 
@@ -28,9 +25,13 @@ class EditLoan extends Component {
                         <InputItem
                             type="money"
                             value={amount}
-                            autoFocus={0 == amount}
                             placeholder="请输入金额"
                             onChange={(val) => this.props.setItemAmount(val)}
+                            ref={(el) => {
+                                if (el && !amount) {
+                                    el.focus();
+                                }
+                            }}
                             clear
                         >借贷金额</InputItem>
 
@@ -58,7 +59,7 @@ class EditLoan extends Component {
 
                         <DatePicker
                             mode="datetime"
-                            extra={occurred_at.format('YYYY-MM-DD HH:mm')}
+                            value={occurred_at}
                             onChange={(date) => this.props.setItemOccurredAt(date)}
                         >
                             <List.Item

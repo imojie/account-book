@@ -10,9 +10,9 @@ import {
 
 export const initItemState = {
     id: 0,
-    type: 1,
-    amount: "0",
-    remark: "init",
+    type: "2",
+    amount: "",
+    remark: "",
     occurred_at: null,
     account: 0,
 

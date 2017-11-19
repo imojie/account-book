@@ -6,10 +6,6 @@ import {
     DatePicker,
     TextareaItem,
 } from 'antd-mobile';
-
-import moment from 'moment';
-import 'moment/locale/zh-cn';
-
 import '../style/category.css';
 import {setItemTransferCategory} from "../actions/item";
 import {connect} from "react-redux";
@@ -53,9 +49,13 @@ class EditTransfer extends Component {
                         <InputItem
                             type="money"
                             value={amount}
-                            autoFocus={0 == amount}
                             placeholder="请输入金额"
                             onChange={(val) => this.props.setItemAmount(val)}
+                            ref={(el) => {
+                                if (el && !amount) {
+                                    el.focus();
+                                }
+                            }}
                             clear
                         >转账金额</InputItem>
 
@@ -78,7 +78,7 @@ class EditTransfer extends Component {
 
                         <DatePicker
                             mode="datetime"
-                            extra={occurred_at.format('YYYY-MM-DD HH:mm')}
+                            value={occurred_at}
                             onChange={(date) => this.props.setItemOccurredAt(date)}
                         >
                             <List.Item

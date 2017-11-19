@@ -45,9 +45,7 @@ class EditAccountItem extends Component {
             "3": 2,
             "4": 3,
         };
-        let index = mapTypesToIndexes[this.props.accountItem.type];
-        console.log('getSegmentIndex:', index);
-        return index;
+        return mapTypesToIndexes[this.props.accountItem.type];
     }
 
     getTypeBySegmentIndex(segmentIndex) {
@@ -67,7 +65,7 @@ class EditAccountItem extends Component {
         const id = this.props.match.params.id;
         const self = this;
         if (!this.props.accountItem.occurred_at) {
-            const zhNow = moment().locale('zh-cn').utcOffset(8);
+            const zhNow = new Date();
             this.props.setItemOccurredAt(zhNow);
         }
         if (id) {
@@ -103,7 +101,6 @@ class EditAccountItem extends Component {
 
     handleSwitchSegmentedControl(e) {
         let type = this.getTypeBySegmentIndex(e.nativeEvent.selectedSegmentIndex);
-        console.log('getTypeBySegmentIndex', type);
         this.props.setItemType(type);
     }
 

@@ -1,12 +1,10 @@
 import * as types from '../constants/actionTypes';
 import {initItemState} from "../reducers/item";
-import moment from 'moment';
-import 'moment/locale/zh-cn';
 
 export const setItem = itme => ({type: types.SET_ITEM, item: itme});
 
 export const initItem = () => {
-    return setItem({...initItemState, occurred_at: moment().locale('zh-cn').utcOffset(8)});
+    return setItem({...initItemState, occurred_at: new Date()});
 };
 
 export const setItemType = type => ({type: types.SET_ITEM_TYPE, itemType: type});
