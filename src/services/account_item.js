@@ -1,5 +1,7 @@
 import axios from 'axios';
 import {getAccessToken} from "./user";
+import moment from 'moment';
+import 'moment/locale/zh-cn';
 
 export function getAccountItem(id) {
     let accessToken = getAccessToken();
@@ -42,7 +44,7 @@ function saveExpenditure(accountItem) {
         from_account_id: accountItem.account,
         category_id: accountItem.expenditure_category,
         remark: accountItem.remark,
-        occurred_at: accountItem.occurred_at
+        occurred_at: moment(accountItem.occurred_at).format('YYYY-MM-DD HH:mm:ss')
     };
 
     let config = {

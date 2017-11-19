@@ -79,10 +79,10 @@ class EditAccountItem extends Component {
                     if (2 == data.type) {
                         self.props.setItem({
                             id: id,
-                            type: 2,
-                            amount: data.amount,
+                            type: '2',
+                            amount: String(data.amount),
                             remark: String(data.remark),
-                            occurred_at: moment(data.occurred_at),
+                            occurred_at: new Date(data.occurred_at),
                             account: data.from_account_id,
                             expenditure_category: data.category_id,
                         });
@@ -137,7 +137,7 @@ class EditAccountItem extends Component {
         let self = this;
         saveAccountItem(this.props.accountItem).then(function (res) {
             if (0 == res.code) {
-                self.props.setItemAmount("0");
+                self.props.setItemAmount("");
             }
         });
     }
