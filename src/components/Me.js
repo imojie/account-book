@@ -25,7 +25,9 @@ class Me extends Component {
                 <WhiteSpace/>
 
                 <List>
-                    <Item arrow="horizontal">修改密码</Item>
+                    <Item arrow="horizontal" onClick={() => {
+                        this.props.history.push("/update-password");
+                    }}>修改密码</Item>
                 </List>
 
                 <WhiteSpace/>

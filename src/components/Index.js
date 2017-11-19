@@ -1,5 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {initItem} from "../actions/item";
+import {connect} from "react-redux";
 
 class Index extends React.Component {
     render() {
@@ -25,4 +27,12 @@ class Index extends React.Component {
 
 }
 
-export default Index;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        initItem: () => {
+            dispatch(initItem());
+        }
+    };
+};
+
+export default connect(null, mapDispatchToProps)(Index);

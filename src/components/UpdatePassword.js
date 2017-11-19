@@ -5,14 +5,19 @@ import {
     NavBar,
     List,
     InputItem,
-    Button
+    Button,
+    Icon
 } from 'antd-mobile';
 
 class UpdatePassword extends Component {
     render() {
         return (
             <div>
-                <NavBar mode="dark">修改密码</NavBar>
+                <NavBar
+                    mode="dark"
+                    icon={<Icon type="left"/>}
+                    onLeftClick={() => this.props.history.goBack()}
+                >修改密码</NavBar>
 
                 <WhiteSpace/>
 

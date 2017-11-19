@@ -6,7 +6,8 @@ import {
     SegmentedControl,
     Button,
     ActivityIndicator,
-    Modal
+    Modal,
+    Icon
 } from 'antd-mobile';
 import EditExpenditure from './EditExpenditure';
 import EditIncome from './EditIncome';
@@ -152,6 +153,7 @@ class EditAccountItem extends Component {
 
                 <NavBar
                     mode="dark"
+                    icon={<Icon type="left"/>}
                     onLeftClick={() => this.props.history.goBack()}
                 >记账</NavBar>
 
