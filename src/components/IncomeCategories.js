@@ -10,6 +10,18 @@ class IncomeCategories extends Component {
 
     render() {
         const categories = this.props.categories;
+        let categoryComponents = [];
+        for (let id in categories) {
+            categoryComponents.push(
+                <List.Item
+                    key={id}
+                    onClick={() => {
+                        this.props.setItemIncomeCategory(id);
+                        this.props.history.goBack();
+                    }}
+                >{categories[id].name}</List.Item>
+            );
+        }
 
         return (
             <div>
@@ -20,17 +32,7 @@ class IncomeCategories extends Component {
                 >选择收入类型</NavBar>
 
                 <div>
-                    <List>
-                        {categories.map((category) => {
-                            return <List.Item
-                                key={category.id}
-                                onClick={() => {
-                                    this.props.setItemIncomeCategory(category.id);
-                                    this.props.history.goBack();
-                                }}
-                            >{category.name}</List.Item>
-                        })}
-                    </List>
+                    <List>{categoryComponents}</List>
                 </div>
             </div>
         );

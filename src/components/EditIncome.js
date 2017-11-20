@@ -14,6 +14,15 @@ class EditIncome extends Component {
         console.log('EditIncome.props', this.props);
     }
 
+    getIncomeCategoryName() {
+        for (let id in this.props.incomeCategories) {
+            if (this.props.accountItem.income_category == id) {
+                return this.props.incomeCategories[id]['name'];
+            }
+        }
+        return '';
+    }
+
     render() {
         let {amount, remark, occurred_at} = this.props.accountItem;
 
@@ -37,6 +46,7 @@ class EditIncome extends Component {
                         <List.Item
                             arrow="horizontal"
                             onClick={() => this.props.history.push('/income-categories')}
+                            extra={this.getIncomeCategoryName()}
                         >收入类型</List.Item>
 
                         <List.Item
@@ -71,7 +81,8 @@ class EditIncome extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        accountItem: state.accountItem
+        accountItem: state.accountItem,
+        incomeCategories: state.entities.income_categories
     }
 };
 
