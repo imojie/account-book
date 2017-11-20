@@ -22,6 +22,11 @@ export const setItemExpenditureCategory = categoryId => ({
     expenditure_category: categoryId
 });
 
+export const setItemIncomeCategory = categoryId => ({
+    type: types.SET_ITEM_INCOME_CATEGORY,
+    income_category: categoryId
+});
+
 export const setItemTransferCategory = categoryId => ({
     type: types.SET_ITEM_TRANSFER_CATEGORY,
     transfer_category: categoryId

@@ -36,7 +36,7 @@ class EditIncome extends Component {
 
                         <List.Item
                             arrow="horizontal"
-                            // onClick={this.jumpExpenditureCategoryView.bind(this)}
+                            onClick={() => this.props.history.push('/income-categories')}
                         >收入类型</List.Item>
 
                         <List.Item

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {List, NavBar} from 'antd-mobile';
+import {List, NavBar, Icon} from 'antd-mobile';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {setExpenditureCategories} from "../actions/categories";
@@ -94,7 +94,9 @@ class ExpenditureCategories extends Component {
             <div>
                 <NavBar
                     mode="dark"
-                    onLeftClick={() => this.props.history.goBack()}>选择支出类型</NavBar>
+                    icon={<Icon type="left"/>}
+                    onLeftClick={() => this.props.history.goBack()}
+                >选择支出类型</NavBar>
 
                 <div className="expenditure-categories">
                     <div className="parent-categories">

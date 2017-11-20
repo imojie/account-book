@@ -19,6 +19,7 @@ import userReducer from './reducers/user';
 import itemReducer from './reducers/item';
 import accountsReducer from "./reducers/accounts";
 import expenditureCategoriesReducer from "./reducers/expenditure_categories";
+import incomeCategoriesReducer from "./reducers/income_categories";
 
 // devTool
 import {composeWithDevTools} from 'redux-devtools-extension';
@@ -29,6 +30,7 @@ let reducers = combineReducers({
     "entities": combineReducers({
         "accounts": accountsReducer,
         "expenditure_categories": expenditureCategoriesReducer,
+        "income_categories": incomeCategoriesReducer,
     })
 });
 
