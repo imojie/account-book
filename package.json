@@ -35,6 +35,7 @@
     "axios": "^0.17.0",
     "lodash": "^4.17.4",
     "moment": "^2.19.2",
+    "query-string": "^5.0.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",

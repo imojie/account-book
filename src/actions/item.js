@@ -17,6 +17,10 @@ export const setItemOccurredAt = occurredAt => ({type: types.SET_ITEM_OCCURRED_A
 
 export const setItemAccount = account => ({type: types.SET_ITEM_ACCOUNT, account});
 
+export const setItemTransferFromAccount = account => ({type: types.SET_ITEM_TRANSFER_FROM_ACCOUNT, account});
+
+export const setItemTransferToAccount = account => ({type: types.SET_ITEM_TRANSFER_TO_ACCOUNT, account});
+
 export const setItemExpenditureCategory = categoryId => ({
     type: types.SET_ITEM_EXPENDITURE_CATEGORY,
     expenditure_category: categoryId

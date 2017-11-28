@@ -9,6 +9,7 @@ import {
 import '../style/category.css';
 import {setItemTransferCategory} from "../actions/item";
 import {connect} from "react-redux";
+import {getAccountNameById} from "../services/account";
 
 class EditTransfer extends Component {
 
@@ -25,10 +26,10 @@ class EditTransfer extends Component {
         let {amount, remark, occurred_at} = this.props.accountItem;
 
         const transferCategories = {
-            "1": "取钱",
-            "2": "存钱",
-            "3": "互转",
-            "4": "还信用卡"
+            "1": "互转",
+            "2": "还信用卡",
+            "3": "取钱",
+            "4": "存钱",
         };
 
         let transferCategoriesComponents = [];
@@ -68,12 +69,14 @@ class EditTransfer extends Component {
 
                         <List.Item
                             arrow="horizontal"
-                            // onClick={this.jumpAccountView.bind(this)}
+                            onClick={() => this.props.history.push('/accounts?from=transfer_from_account')}
+                            extra={getAccountNameById(this.props.accounts, this.props.accountItem.transfer_from_account)}
                         >转出账户</List.Item>
 
                         <List.Item
                             arrow="horizontal"
-                            // onClick={this.jumpAccountView.bind(this)}
+                            onClick={() => this.props.history.push('/accounts?from=transfer_to_account')}
+                            extra={getAccountNameById(this.props.accounts, this.props.accountItem.transfer_to_account)}
                         >转入账户</List.Item>
 
                         <DatePicker

@@ -4,7 +4,8 @@ import Account from './Account';
 import axios from "axios/index";
 import {connect} from 'react-redux';
 import {setAccounts} from "../actions/accounts";
-import {setItemAccount} from "../actions/item";
+import {setItemAccount, setItemTransferFromAccount, setItemTransferToAccount} from "../actions/item";
+import queryString from 'query-string';
 
 
 class AccountList extends Component {
@@ -45,7 +46,22 @@ class AccountList extends Component {
     }
 
     handleClick(accountId) {
-        this.props.setItemAccount(accountId);
+        const query = queryString.parse(this.props.history.location.search);
+
+        switch (query.from) {
+            case 'transfer_from_account':
+                this.props.setItemTransferFromAccount(accountId);
+                break;
+            case 'transfer_to_account':
+                this.props.setItemTransferToAccount(accountId);
+                break;
+            case 'expenditure':
+            case 'income':
+            default:
+                this.props.setItemAccount(accountId);
+                break;
+        }
+
         this.props.history.goBack();
     }
 
@@ -89,6 +105,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         setItemAccount: (accountId) => {
             dispatch(setItemAccount(accountId));
+        },
+        setItemTransferFromAccount: (accountId) => {
+            dispatch(setItemTransferFromAccount(accountId));
+        },
+        setItemTransferToAccount: (accountId) => {
+            dispatch(setItemTransferToAccount(accountId));
         }
     };
 };
