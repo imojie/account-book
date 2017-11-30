@@ -4,7 +4,13 @@ import Account from './Account';
 import axios from "axios/index";
 import {connect} from 'react-redux';
 import {setAccounts} from "../actions/accounts";
-import {setItemAccount, setItemTransferFromAccount, setItemTransferToAccount} from "../actions/item";
+import {
+    setItemAccount,
+    setItemLoanFromAccount,
+    setItemLoanToAccount,
+    setItemTransferFromAccount,
+    setItemTransferToAccount
+} from "../actions/item";
 import queryString from 'query-string';
 
 
@@ -54,6 +60,12 @@ class AccountList extends Component {
                 break;
             case 'transfer_to_account':
                 this.props.setItemTransferToAccount(accountId);
+                break;
+            case 'loan_from_account':
+                this.props.setItemLoanFromAccount(accountId);
+                break;
+            case 'loan_to_account':
+                this.props.setItemLoanToAccount(accountId);
                 break;
             case 'expenditure':
             case 'income':
@@ -111,6 +123,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         setItemTransferToAccount: (accountId) => {
             dispatch(setItemTransferToAccount(accountId));
+        },
+        setItemLoanFromAccount: (accountId) => {
+            dispatch(setItemLoanFromAccount(accountId));
+        },
+        setItemLoanToAccount: (accountId) => {
+            dispatch(setItemLoanToAccount(accountId));
         }
     };
 };

@@ -8,6 +8,7 @@ import {
 } from 'antd-mobile';
 import {connect} from "react-redux";
 import {setItemLoanCategory} from "../actions/item";
+import {getAccountNameById} from "../services/account";
 
 
 class EditLoan extends Component {
@@ -64,12 +65,14 @@ class EditLoan extends Component {
 
                         <List.Item
                             arrow="horizontal"
-                            // onClick={this.jumpAccountView.bind(this)}
+                            onClick={() => this.props.history.push('/accounts?from=loan_from_account')}
+                            extra={getAccountNameById(this.props.accounts, this.props.accountItem.loan_from_account)}
                         >from账户</List.Item>
 
                         <List.Item
                             arrow="horizontal"
-                            // onClick={this.jumpAccountView.bind(this)}
+                            onClick={() => this.props.history.push('/accounts?from=loan_to_account')}
+                            extra={getAccountNameById(this.props.accounts, this.props.accountItem.loan_to_account)}
                         >to账户</List.Item>
 
                         <DatePicker

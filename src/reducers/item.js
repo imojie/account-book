@@ -10,7 +10,9 @@ import {
     SET_ITEM_REMARK,
     SET_ITEM_TRANSFER_FROM_ACCOUNT,
     SET_ITEM_TRANSFER_TO_ACCOUNT,
-    SET_ITEM_LOAN_CATEGORY
+    SET_ITEM_LOAN_CATEGORY,
+    SET_ITEM_LOAN_FROM_ACCOUNT,
+    SET_ITEM_LOAN_TO_ACCOUNT
 } from '../constants/actionTypes';
 
 export const initItemState = {
@@ -53,6 +55,10 @@ export default function itemReducer(state = initItemState, action) {
             return {...state, transfer_from_account: action.account};
         case SET_ITEM_TRANSFER_TO_ACCOUNT:
             return {...state, transfer_to_account: action.account};
+        case SET_ITEM_LOAN_FROM_ACCOUNT:
+            return {...state, loan_from_account: action.account};
+        case SET_ITEM_LOAN_TO_ACCOUNT:
+            return {...state, loan_to_account: action.account};
         case SET_ITEM_EXPENDITURE_CATEGORY:
             return {...state, expenditure_category: action.expenditure_category};
         case SET_ITEM_INCOME_CATEGORY:

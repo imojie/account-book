@@ -21,6 +21,10 @@ export const setItemTransferFromAccount = account => ({type: types.SET_ITEM_TRAN
 
 export const setItemTransferToAccount = account => ({type: types.SET_ITEM_TRANSFER_TO_ACCOUNT, account});
 
+export const setItemLoanFromAccount = account => ({type: types.SET_ITEM_LOAN_FROM_ACCOUNT, account});
+
+export const setItemLoanToAccount = account => ({type: types.SET_ITEM_LOAN_TO_ACCOUNT, account});
+
 export const setItemExpenditureCategory = categoryId => ({
     type: types.SET_ITEM_EXPENDITURE_CATEGORY,
     expenditure_category: categoryId
