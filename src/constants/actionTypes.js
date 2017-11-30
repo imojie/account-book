@@ -15,3 +15,4 @@ export const SET_ITEM_TRANSFER_TO_ACCOUNT = 'set_item_transfer_to_account';
 export const SET_ITEM_EXPENDITURE_CATEGORY = 'set_item_expenditure_category';
 export const SET_ITEM_INCOME_CATEGORY = 'set_item_income_category';
 export const SET_ITEM_TRANSFER_CATEGORY = 'set_item_transfer_category';
+export const SET_ITEM_LOAN_CATEGORY = 'set_item_loan_category';

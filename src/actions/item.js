@@ -35,3 +35,8 @@ export const setItemTransferCategory = categoryId => ({
     type: types.SET_ITEM_TRANSFER_CATEGORY,
     transfer_category: categoryId
 });
+
+export const setItemLoanCategory = categoryId => ({
+    type: types.SET_ITEM_LOAN_CATEGORY,
+    loan_category: categoryId
+});

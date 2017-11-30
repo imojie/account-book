@@ -3,10 +3,11 @@ import {
     Tag,
     List,
     InputItem,
-    Button,
     DatePicker,
     TextareaItem,
 } from 'antd-mobile';
+import {connect} from "react-redux";
+import {setItemLoanCategory} from "../actions/item";
 
 
 class EditLoan extends Component {
@@ -17,6 +18,25 @@ class EditLoan extends Component {
 
     render() {
         let {amount, remark, occurred_at} = this.props.accountItem;
+
+        const loanCategories = {
+            "1": "借入",
+            "2": "借出",
+            "3": "还款",
+            "4": "收款",
+        };
+
+        let loanCategoriesComponents = [];
+        for (let id in loanCategories) {
+            loanCategoriesComponents.push(
+                <Tag
+                    key={id}
+                    selected={id == this.props.accountItem.loan_category}
+                    onChange={() => this.props.setItemLoanCategory(id)}
+                >{loanCategories[id]}</Tag>
+            );
+        }
+
 
         return (
             <div>
@@ -37,13 +57,8 @@ class EditLoan extends Component {
 
                         <List.Item>
                             借贷类型
-                            <div className="loan_categoires">
-                                <List.Item.Brief>
-                                    <Tag selected>借入</Tag>
-                                    <Tag>借出</Tag>
-                                    <Tag>还款</Tag>
-                                    <Tag>收款</Tag>
-                                </List.Item.Brief>
+                            <div className="loan_categories">
+                                <List.Item.Brief>{loanCategoriesComponents}</List.Item.Brief>
                             </div>
                         </List.Item>
 
@@ -81,4 +96,12 @@ class EditLoan extends Component {
     }
 }
 
-export default EditLoan;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setItemLoanCategory: (categoryId) => {
+            dispatch(setItemLoanCategory(categoryId));
+        }
+    }
+};
+
+export default connect(null, mapDispatchToProps)(EditLoan);

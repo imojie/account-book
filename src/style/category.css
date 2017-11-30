@@ -28,7 +28,7 @@
     overflow-y: scroll;
 }
 
-.transfer_categories > div > div, .loan_categoires > div > div {
+.transfer_categories > div > div, .loan_categories > div > div {
     margin-left: 0.18rem;
     margin-bottom: 0.18rem;
 }

@@ -37,7 +37,7 @@ class EditTransfer extends Component {
             transferCategoriesComponents.push(
                 <Tag
                     key={id}
-                    selected={id == this.props.transferCategory}
+                    selected={id == this.props.accountItem.transfer_category}
                     onChange={() => this.props.setItemTransferCategory(id)}
                 >{transferCategories[id]}</Tag>
             );
@@ -103,12 +103,6 @@ class EditTransfer extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        transferCategory: state.accountItem.transfer_category,
-    }
-};
-
 const mapDispatchToProps = (dispatch) => {
     return {
         setItemTransferCategory: (categoryId) => {
@@ -117,4 +111,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditTransfer);
+export default connect(null, mapDispatchToProps)(EditTransfer);
