@@ -13,6 +13,7 @@ import Login from './components/Login';
 import AppTabBar from '../src/components/AppTabBar';
 import UpdatePassword from '../src/components/UpdatePassword';
 import NoMatch from './components/NoMatch';
+import AccountItems from './components/AccountItems';
 
 // reducer
 import userReducer from './reducers/user';
@@ -42,6 +43,7 @@ ReactDOM.render(
             <Switch>
                 <Route exact path="/" component={AppTabBar}/>
                 <Route path="/account-items" component={AppTabBar}/>
+                <Route path="/account-items2" component={AccountItems}/>
                 <Route path="/accounts" component={AppTabBar}/>
                 <Route path="/me" component={AppTabBar}/>
                 <Route path="/edit-account-item/:id?" component={EditAccountItem}/>

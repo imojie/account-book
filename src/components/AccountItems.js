@@ -6,6 +6,7 @@ import axios from 'axios';
 import '../style/items.css';
 import {connect} from "react-redux";
 import {initItem} from "../actions/item";
+import {StickyContainer, Sticky} from 'react-sticky';
 
 function getAccessToken() {
     let localUser = localStorage.getItem('user');
@@ -31,17 +32,12 @@ function getAccountItems(page) {
     });
     return instance.get(`account-books/22/items?page=${page}`)
         .then(function (response) {
-            // console.log(response.data.data);
-
             return response.data.data;
         }).catch(function (response) {
             if (response instanceof Error) {
                 console.log('Error', response.message, response.response);
             } else {
-                console.log(response.data);
-                console.log(response.status);
-                console.log(response.headers);
-                console.log(response.config);
+                console.log(response);
             }
         });
 }
@@ -98,7 +94,6 @@ class AccountItems extends Component {
 
     onEndReached = (event) => {
         console.log('onEndReached');
-        let _self = this;
 
         if (this.state.isLoading || this.page > this.maxPage) {
             console.log('over');
@@ -110,9 +105,7 @@ class AccountItems extends Component {
     };
 
     render() {
-
         const row = (rowData, sectionID, rowID) => {
-            // console.log('rowData:', rowData, 'sectionID:', sectionID, 'rowID:', rowID, rowData.id);
             return <AccountItem
                 rowID={rowID}
                 accountItem={rowData}
@@ -123,8 +116,26 @@ class AccountItems extends Component {
         };
 
         const section = (sectionData, sectionID) => {
-            // console.log('sectionData:', sectionData, 'sectionID', sectionID);
-            return <div>{sectionID}</div>
+            return (
+                <Sticky>
+                    {({style}) => (
+                        <div
+                            className="sticky"
+                            style={{...style, zIndex: 3, backgroundColor: '#5890ff'}}
+                        >{sectionID}</div>
+                    )}
+                </Sticky>
+            );
+        };
+
+        const sectionWrapper = (sectionID) => {
+            return (
+                <StickyContainer
+                    key={sectionID}
+                    className="sticky-container"
+                    style={{zIndex: 4}}
+                />
+            );
         };
 
         return (
@@ -133,19 +144,22 @@ class AccountItems extends Component {
 
                 <ListView
                     dataSource={this.state.dataSource}
-                    renderHeader={() => <span>header</span>}
-                    renderFooter={() => (<div style={{padding: 30, textAlign: 'center'}}>
+                    className="am-list sticky-list"
+                    useBodyScroll
+
+                    initialListSize={15}
+                    renderFooter={() => (<div style={{padding: '5px', textAlign: 'center'}}>
                         {this.state.isLoading ? 'Loading...' : 'Loaded'}
                     </div>)}
-                    renderRow={row}
+
+                    renderSectionWrapper={sectionWrapper}
                     renderSectionHeader={section}
-                    className="am-list"
-                    useBodyScroll
-                    initialListSize={16}
+                    renderRow={row}
+
+                    pageSize={5}
                     scrollEventThrottle={200}
-                    stickyHeader
                     onEndReached={this.onEndReached}
-                    onEndReachedThreshold={50}
+                    onEndReachedThreshold={100}
                 />
             </div>
         );
