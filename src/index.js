@@ -19,6 +19,7 @@ import AccountItems from './components/AccountItems';
 import userReducer from './reducers/user';
 import itemReducer from './reducers/item';
 import accountsReducer from "./reducers/accounts";
+import accountItemsReducer, {accountItemsUiReducer} from "./reducers/account_items";
 import expenditureCategoriesReducer from "./reducers/expenditure_categories";
 import incomeCategoriesReducer from "./reducers/income_categories";
 
@@ -28,8 +29,12 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 let reducers = combineReducers({
     "user": userReducer,
     "accountItem": itemReducer,
+    "ui": combineReducers({
+        "account_item_page": accountItemsUiReducer
+    }),
     "entities": combineReducers({
         "accounts": accountsReducer,
+        "account_items": accountItemsReducer,
         "expenditure_categories": expenditureCategoriesReducer,
         "income_categories": incomeCategoriesReducer,
     })

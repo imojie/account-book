@@ -7,6 +7,7 @@ import '../style/items.css';
 import {connect} from "react-redux";
 import {initItem} from "../actions/item";
 import {StickyContainer, Sticky} from 'react-sticky';
+import {setAccountItems, setAccountItemsUI} from "../actions/account_items";
 
 function getAccessToken() {
     let localUser = localStorage.getItem('user');
@@ -51,18 +52,25 @@ class AccountItems extends Component {
             sectionHeaderHasChanged: (s1, s2) => s1 !== s2
         });
 
-        this.page = 1;
-        this.maxPage = 1;
+        console.log(this.props.accountItems);
 
-        this.rData = {};
         this.state = {
-            dataSource: ds.cloneWithRowsAndSections(this.rData),
-            isLoading: true,
+            dataSource: ds.cloneWithRowsAndSections(this.props.accountItems),
+            isLoading: false,
         };
     }
 
     componentWillMount() {
         this.getItems();
+    }
+
+    componentDidMount() {
+        console.log('componentDidMount', this.props.scrollX, this.props.scrollY);
+        this.lv.scrollTo(this.props.scrollX, this.props.scrollY);
+    }
+
+    componentWillUnmount() {
+        this.props.setUI({scrollX: window.scrollX, scrollY: window.scrollY});
     }
 
     mergeItems(items1, items2) {
@@ -78,15 +86,29 @@ class AccountItems extends Component {
     }
 
     getItems() {
-        let _self = this;
-        let p = getAccountItems(this.page);
+        if (this.state.isLoading || !this.props.hasMore) {
+            console.log('over');
+            return;
+        }
+        this.setState({isLoading: true});
+
+        let self = this;
+        let p = getAccountItems(this.props.page);
         p.then(function (data) {
             let accountItems = data.data;
-            _self.rData = _self.mergeItems(_self.rData, accountItems);
-            _self.page += 1;
-            _self.maxPage = data.last_page;
-            _self.setState({
-                dataSource: _self.state.dataSource.cloneWithRowsAndSections(_self.rData),
+            self.accountItems = self.mergeItems(self.props.accountItems, accountItems);
+
+            console.log(self.mergeItems(self.props.accountItems, accountItems));
+
+            self.props.setAccountItems(self.mergeItems(self.props.accountItems, accountItems));
+
+            self.props.setUI({
+                page: self.props.page + 1,
+                hasMore: data.last_page > self.props.page
+            });
+
+            self.setState({
+                dataSource: self.state.dataSource.cloneWithRowsAndSections(self.props.accountItems),
                 isLoading: false
             });
         });
@@ -94,13 +116,6 @@ class AccountItems extends Component {
 
     onEndReached = (event) => {
         console.log('onEndReached');
-
-        if (this.state.isLoading || this.page > this.maxPage) {
-            console.log('over');
-            return;
-        }
-        this.setState({isLoading: true});
-
         this.getItems();
     };
 
@@ -143,6 +158,7 @@ class AccountItems extends Component {
                 <NavBar mode="dark">明细</NavBar>
 
                 <ListView
+                    ref={el => this.lv = el}
                     dataSource={this.state.dataSource}
                     className="am-list sticky-list"
                     useBodyScroll
@@ -166,11 +182,24 @@ class AccountItems extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        accountItems: state.entities.account_items,
+        ...state.ui.account_item_page
+    }
+};
+
 const mapDispatchToProps = (dispatch) => {
     return {
         initItem: () => {
             dispatch(initItem());
+        },
+        setAccountItems: (accountItems) => {
+            dispatch(setAccountItems(accountItems));
+        },
+        setUI: (ui) => {
+            dispatch(setAccountItemsUI(ui));
         }
     };
 };
-export default connect(null, mapDispatchToProps)(AccountItems);
+export default connect(mapStateToProps, mapDispatchToProps)(AccountItems);

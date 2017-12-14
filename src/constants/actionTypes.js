@@ -1,5 +1,7 @@
 export const SET_USER = 'set_user';
 export const SET_ACCOUNTS = 'set_accounts';
+export const SET_ACCOUNT_ITEMS = 'set_account_items';
+export const SET_ACCOUNT_ITEMS_UI = 'set_account_items_ui';
 
 export const SET_EXPENDITURE_CATEGORIES = 'set_expenditure_categories';
 export const SET_INCOME_CATEGORIES = 'set_income_categories';
