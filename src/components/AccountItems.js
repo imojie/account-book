@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ListView, NavBar} from 'antd-mobile';
+import {ListView, NavBar, PullToRefresh} from 'antd-mobile';
 import AccountItem from './AccountItem';
 import axios from 'axios';
 
@@ -7,7 +7,7 @@ import '../style/items.css';
 import {connect} from "react-redux";
 import {initItem} from "../actions/item";
 import {StickyContainer, Sticky} from 'react-sticky';
-import {setAccountItems, setAccountItemsUI} from "../actions/account_items";
+import {initAccountItems, setAccountItems, setAccountItemsUI} from "../actions/account_items";
 
 function getAccessToken() {
     let localUser = localStorage.getItem('user');
@@ -57,6 +57,7 @@ class AccountItems extends Component {
         this.state = {
             dataSource: ds.cloneWithRowsAndSections(this.props.accountItems),
             isLoading: false,
+            refreshing: false
         };
     }
 
@@ -113,6 +114,33 @@ class AccountItems extends Component {
             });
         });
     }
+
+    onRefresh = () => {
+        console.log('onRefresh');
+
+        this.setState({refreshing: true, isLoading: true});
+
+        this.props.setUI({page: 1, hasMore: true});
+
+        let self = this;
+        let p = getAccountItems(this.props.page);
+        p.then(function (data) {
+            let accountItems = data.data;
+
+            self.props.initAccountItems(accountItems);
+
+            self.props.setUI({
+                page: self.props.page + 1,
+                hasMore: data.last_page > self.props.page
+            });
+
+            self.setState({
+                dataSource: self.state.dataSource.cloneWithRowsAndSections(accountItems),
+                refreshing: false,
+                isLoading: false
+            });
+        });
+    };
 
     onEndReached = (event) => {
         console.log('onEndReached');
@@ -176,6 +204,11 @@ class AccountItems extends Component {
                     scrollEventThrottle={200}
                     onEndReached={this.onEndReached}
                     onEndReachedThreshold={100}
+
+                    pullToRefresh={<PullToRefresh
+                        refreshing={this.state.refreshing}
+                        onRefresh={this.onRefresh}
+                    />}
                 />
             </div>
         );
@@ -196,6 +229,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         setAccountItems: (accountItems) => {
             dispatch(setAccountItems(accountItems));
+        },
+        initAccountItems: (accountItems) => {
+            dispatch(initAccountItems(accountItems));
         },
         setUI: (ui) => {
             dispatch(setAccountItemsUI(ui));
