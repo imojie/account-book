@@ -76,16 +76,41 @@ class EditAccountItem extends Component {
                 // 从网络获取
                 getAccountItem(id).then(function (data) {
                     console.log(data);
-                    if (2 == data.type) {
+                    let item = {
+                        id: id,
+                        type: data.type,
+                        amount: String(data.amount),
+                        remark: String(data.remark),
+                        occurred_at: new Date(data.occurred_at),
+                    };
+                    if (1 == data.type) {
                         self.props.setItem({
-                            id: id,
-                            type: '2',
-                            amount: String(data.amount),
-                            remark: String(data.remark),
-                            occurred_at: new Date(data.occurred_at),
+                            ...item,
+                            account: data.to_account_id,
+                            income_category: data.category_id,
+                        });
+                    } else if (2 == data.type) {
+                        self.props.setItem({
+                            ...item,
                             account: data.from_account_id,
                             expenditure_category: data.category_id,
                         });
+                    } else if (3 == data.type) {
+                        self.props.setItem({
+                            ...item,
+                            transfer_from_account: data.from_account_id,
+                            transfer_to_account: data.to_account_id,
+                            transfer_category: data.category_id,
+                        });
+                    } else if (4 == data.type) {
+                        self.props.setItem({
+                            ...item,
+                            loan_from_account: data.from_account_id,
+                            loan_to_account: data.to_account_id,
+                            loan_category: data.category_id,
+                        });
+                    } else {
+                        console.error('account_item type error');
                     }
                     self.setState({isLoading: false});
                 });

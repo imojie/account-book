@@ -21,20 +21,20 @@ export const initItemState = {
     amount: "",
     remark: "",
     occurred_at: null,
-    account: 0,
 
-    expenditure_category: 0,
+    account: 0,
 
     income_category: 0,
 
-    loan_category: '1',
-    loan_from_account: 0,
-    loan_to_account: 0,
+    expenditure_category: 0,
 
     transfer_category: '1',
     transfer_from_account: 0,
     transfer_to_account: 0,
 
+    loan_category: '1',
+    loan_from_account: 0,
+    loan_to_account: 0,
 };
 
 export default function itemReducer(state = initItemState, action) {
