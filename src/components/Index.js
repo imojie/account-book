@@ -16,7 +16,7 @@ class Index extends React.Component {
                     </button>
                 </div>
                 <div>
-                    <Link to='account-items'>明细</Link>
+                    <Link to='account-items2'>明细</Link>
                 </div>
                 <div>
                     <Link to='passport/login'>登录</Link>

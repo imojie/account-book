@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ListView, NavBar, PullToRefresh} from 'antd-mobile';
+import {ListView, NavBar, PullToRefresh, Icon} from 'antd-mobile';
 import AccountItem from './AccountItem';
 import axios from 'axios';
 
@@ -183,7 +183,11 @@ class AccountItems extends Component {
 
         return (
             <div>
-                <NavBar mode="dark">明细</NavBar>
+                <NavBar
+                    mode="dark"
+                    icon={<Icon type="left"/>}
+                    onLeftClick={() => this.props.history.goBack()}
+                >明细</NavBar>
 
                 <ListView
                     ref={el => this.lv = el}
