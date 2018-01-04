@@ -5,7 +5,8 @@ import {
     Radio,
     WhiteSpace,
     NavBar,
-    Button
+    Button,
+    Icon
 } from 'antd-mobile';
 import {connect} from 'react-redux';
 import {setItemType} from '../actions/item';
@@ -33,11 +34,11 @@ class EditAccount extends Component {
         ];
         return (
             <div>
-
                 <NavBar
                     mode="dark"
-                    onLeftClick={() => {
-                    }}>添加账户</NavBar>
+                    icon={<Icon type="left"/>}
+                    onLeftClick={() => this.props.history.goBack()}
+                >添加账户</NavBar>
 
                 <div className="edit-account-item">
                     <form>
@@ -54,6 +55,16 @@ class EditAccount extends Component {
 
                         <WhiteSpace size="lg"/>
 
+                        <List>
+                            <InputItem
+                                type="money"
+                                clear
+                                value={'0'}
+                            >金额</InputItem>
+                        </List>
+
+                        <WhiteSpace size="lg"/>
+
                         <List renderHeader={() => '账户类型'}>
                             {accountTypes.map(type => (
                                 <RadioItem
@@ -65,19 +76,10 @@ class EditAccount extends Component {
                             ))}
                         </List>
 
-                        <WhiteSpace size="lg"/>
-
-                        <List>
-                            <InputItem
-                                type="money"
-                                clear
-                                value={'0'}
-                            >金额</InputItem>
-                        </List>
-
-                        <WhiteSpace size="lg"/>
-
-                        <Button className="save_account_btn" type="primary">保存</Button>
+                        <div className="save-btn">
+                            <Button type="primary">保存</Button>
+                            <WhiteSpace size="lg"/>
+                        </div>
                     </form>
                 </div>
             </div>

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {List, NavBar, Icon} from 'antd-mobile';
 import Account from './Account';
 import axios from "axios/index";
+import config from '../config/config.json';
 import {connect} from 'react-redux';
 import {setAccounts} from "../actions/accounts";
 import {
@@ -33,7 +34,7 @@ class AccountList extends Component {
         }
 
         let instance = axios.create({
-            baseURL: 'http://account-book.app/api/',
+            baseURL: config.api_url,
             timeout: 3000,
             headers: {'Authorization': 'Bearer ' + accessToken}
         });

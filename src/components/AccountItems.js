@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {ListView, NavBar, PullToRefresh, Icon} from 'antd-mobile';
 import AccountItem from './AccountItem';
 import axios from 'axios';
+import config from '../config/config.json';
 
 import '../style/items.css';
 import {connect} from "react-redux";
@@ -27,7 +28,7 @@ function getAccountItems(page) {
     console.log(`page:${page}`);
 
     let instance = axios.create({
-        baseURL: 'http://account-book.app/api/',
+        baseURL: config.api_url,
         timeout: 3000,
         headers: {'Authorization': `Bearer ${accessToken}`}
     });

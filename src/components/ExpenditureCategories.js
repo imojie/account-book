@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {List, NavBar, Icon} from 'antd-mobile';
 import axios from 'axios';
+import config from '../config/config.json';
 import {connect} from 'react-redux';
 import {setExpenditureCategories} from "../actions/categories";
 import {setItemExpenditureCategory} from "../actions/item";
@@ -31,7 +32,7 @@ class ExpenditureCategories extends Component {
         }
 
         let instance = axios.create({
-            baseURL: 'http://account-book.app/api/',
+            baseURL: config.api_url,
             timeout: 3000,
             headers: {'Authorization': 'Bearer ' + accessToken}
         });

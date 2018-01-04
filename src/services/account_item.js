@@ -1,4 +1,5 @@
 import axios from 'axios';
+import config from '../config/config.json';
 import {getAccessToken} from "./user";
 import moment from 'moment';
 import 'moment/locale/zh-cn';
@@ -7,7 +8,7 @@ export function getAccountItem(id) {
     let accessToken = getAccessToken();
 
     let instance = axios.create({
-        baseURL: 'http://account-book.app/api/',
+        baseURL: config.api_url,
         timeout: 2000,
         headers: {'Authorization': `Bearer ${accessToken}`}
     });
@@ -29,7 +30,7 @@ function saveExpenditure(accountItem) {
     const accessToken = getAccessToken();
 
     let instance = axios.create({
-        baseURL: 'http://account-book.app/api/',
+        baseURL: config.api_url,
         timeout: 2000,
         headers: {
             'Authorization': `Bearer ${accessToken}`,
@@ -76,7 +77,7 @@ function saveIncome(accountItem) {
     const accessToken = getAccessToken();
 
     let instance = axios.create({
-        baseURL: 'http://account-book.app/api/',
+        baseURL: config.api_url,
         timeout: 2000,
         headers: {
             'Authorization': `Bearer ${accessToken}`,
@@ -123,7 +124,7 @@ function saveTransfer(accountItem) {
     const accessToken = getAccessToken();
 
     let instance = axios.create({
-        baseURL: 'http://account-book.app/api/',
+        baseURL: config.api_url,
         timeout: 2000,
         headers: {
             'Authorization': `Bearer ${accessToken}`,
@@ -172,7 +173,7 @@ function saveLoan(accountItem) {
     const accessToken = getAccessToken();
 
     let instance = axios.create({
-        baseURL: 'http://account-book.app/api/',
+        baseURL: config.api_url,
         timeout: 2000,
         headers: {
             'Authorization': `Bearer ${accessToken}`,
@@ -240,7 +241,7 @@ export function deleteAccountItem(id) {
     let accessToken = getAccessToken();
 
     let instance = axios.create({
-        baseURL: 'http://account-book.app/api/',
+        baseURL: config.api_url,
         timeout: 2000,
         headers: {'Authorization': `Bearer ${accessToken}`}
     });

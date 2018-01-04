@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {TabBar} from 'antd-mobile';
 import Index from './Index';
 import AccountItems from './AccountItems';
-import AccountList from './AccountList';
+import Accounts from './Accounts';
 import Me from './Me';
 
 class AppTabBar extends Component {
@@ -32,7 +32,7 @@ class AppTabBar extends Component {
                 key: "accounts",
                 icon: require('../img/user.svg'),
                 selectedIcon: require('../img/user_selected.svg'),
-                component: AccountList,
+                component: Accounts,
             },
             {
                 uri: '/me',
